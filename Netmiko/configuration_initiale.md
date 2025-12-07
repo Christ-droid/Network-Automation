@@ -66,18 +66,18 @@ copy run start
 ```bash
 conf t
 hostname S1 / S2
-no ip routing
+no ip routing #désactiver le routage
 no ip domain lookup
-ip domain name rtp.cisco.com
+ip domain name rtp.cisco.com #nom de domaine
 username admin privilege 15 secret admin1234
 crypto key generate rsa modulus 1024
 ip ssh version 2
 inter line vty 0 15
 login local
-transport input ssh
+transport input ssh #utiliser le ssh pour se connecter à la machine
 exit
 
-vlan 99 / 100
+vlan 99 / 100 #99 pour S1, 100 pour S2
 name Gestion_S1 / Gestion_S2
 exit
 inter vlan 99 / 100
@@ -86,7 +86,7 @@ description LAN Gestion_S1 / Gestion_S2
 no shutdown
 exit
 
-ip default-gateway 172.16.99/100.1
+ip default-gateway 172.16.99/100.1 #Pour S1 / Pour S2
  
 inter g0/0
 switchport trunk encapsulation dot1Q
