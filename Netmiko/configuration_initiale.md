@@ -52,6 +52,7 @@ ip add 172.16.100.1 255.255.255.0
 description LAN Gestion S2
 exit
 
+
 inter fa0/1
 no shutdown
 end
@@ -62,7 +63,7 @@ copy run start
 
 
 
-## Switch (1 / 2) :
+### Switch (1 / 2) :
 
 ```bash
 conf t
