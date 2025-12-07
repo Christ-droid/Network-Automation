@@ -2,7 +2,7 @@ import sys
 
 try:
     from config_router import run_router_config
-    from config_switch import run_switches_config
+    from Netmiko.config_switch import run_switches_config
 #    from config_vpcs import run_vpcs_config
 except ImportError as e:
     print("Erreur : Il manque un fichier de script (config_router.py, etc).")
