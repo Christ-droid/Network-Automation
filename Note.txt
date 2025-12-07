@@ -1,0 +1,12 @@
+Installation 
+pip install ansible 
+pip install paramiko
+pip install ansible-pylibssh
+
+ansible-galaxy collection install cisco.ios
+
+
+
+
+ansible-inventory -i inventory.ini --list
+ansible myhosts -m ping -i inventory.ini

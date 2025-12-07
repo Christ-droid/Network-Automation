@@ -1,0 +1,23 @@
+# group_vars/all.yml
+ansible_user: admin
+ansible_password: admin
+ansible_become: yes
+ansible_become_method: enable
+ansible_network_os: cisco.ios.ios
+ansible_connection: network_cli
+
+# VLANs
+vlans:
+  - id: 10
+    name: USERS
+    access_ports:
+      - GigabitEthernet0/1
+  - id: 20
+    name: SERVERS
+    access_ports:
+      - GigabitEthernet0/2
+
+# Subinterfaces côté R1
+router_subifs:
+  - { vlan: 10, ip: "192.168.10.1", mask: "255.255.255.0" }
+  - { vlan: 20, ip: "192.168.20.1", mask: "255.255.255.0" }

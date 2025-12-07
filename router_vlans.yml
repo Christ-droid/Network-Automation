@@ -1,0 +1,25 @@
+---
+- name: Configure Router-on-a-stick
+  hosts: cisco_routers
+  connection: network_cli
+  gather_facts: no
+
+  tasks:
+
+    - name: Configurer la sous-interface pour chaque VLAN
+      cisco.ios.ios_interfaces:
+        config:
+          - name: "{{ router_trunk }}.{{ item.vlan }}"
+            enabled: true
+      loop: "{{ router_subifs }}"
+
+    - name: Configurer l'encapsulation dot1Q + IP
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: "{{ router_trunk }}.{{ item.vlan }}"
+            ipv4:
+              - address: "{{ item.ip }} {{ item.mask }}"
+            encapsulation:
+              dot1q:
+                vlan: "{{ item.vlan }}"
+      loop: "{{ router_subifs }}"

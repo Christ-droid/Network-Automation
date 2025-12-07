@@ -1,0 +1,15 @@
+---
+- name: Test connexion vers les équipements Cisco
+  hosts: cisco_routers,cisco_switches
+  gather_facts: no
+
+  tasks:
+    - name: Récupérer quelques facts IOS
+      cisco.ios.ios_facts:
+      register: facts
+
+    - name: Afficher le modèle et la version
+      debug:
+        msg: "Host {{ inventory_hostname }} : {{ facts.ansible_facts.ansible_net_model }} / {{ facts.ansible_facts.ansible_net_version }}"
+
+

@@ -1,0 +1,59 @@
+---
+- name: Config de base sur le routeur R1
+  hosts: cisco_routers
+  gather_facts: no
+
+  tasks:
+    - name: Config de base R1 (hostname, domaine, utilisateur, SSH, bannière)
+      cisco.ios.ios_config:
+        lines:
+          - "hostname {{ router_hostname }}"
+          - "ip domain-name {{ router_domain }}"
+          - "username admin privilege 15 secret {{ ansible_password }}"
+          - "enable secret {{ ansible_password }}"
+          - "ip ssh version 2"
+          - "crypto key generate rsa modulus 2048"
+          - "banner motd @\n{{ router_mgmt_banner }}\n@"
+        save_when: modified
+
+    - name: Configurer l'interface de management (optionnel)
+      cisco.ios.ios_config:
+        lines:
+          - "interface {{ router_mgmt_interface }}"
+          - "description Management vers Cloud/Host"
+          - "ip address {{ router_mgmt_ip }} {{ router_mgmt_mask }}"
+          - "no shutdown"
+        save_when: modified
+
+    - name: Activer SSH sur les lignes VTY
+      cisco.ios.ios_config:
+        lines:
+          - "line vty 0 4"
+          - "login local"
+          - "transport input ssh"
+        save_when: modified
+
+
+- name: Config de base sur les switches
+  hosts: cisco_switches
+  gather_facts: no
+
+  tasks:
+    - name: Configurer hostname + domaine + utilisateur + SSH
+      cisco.ios.ios_config:
+        lines:
+          - "hostname {{ inventory_hostname }}"
+          - "ip domain-name {{ switch_domain }}"
+          - "username admin privilege 15 secret {{ ansible_password }}"
+          - "enable secret {{ ansible_password }}"
+          - "ip ssh version 2"
+          - "crypto key generate rsa modulus 2048"
+        save_when: modified
+
+    - name: Activer SSH sur les VTY
+      cisco.ios.ios_config:
+        lines:
+          - "line vty 0 4"
+          - "login local"
+          - "transport input ssh"
+        save_when: modified

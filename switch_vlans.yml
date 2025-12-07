@@ -1,0 +1,23 @@
+---
+- name: Configuration VLANs + Access ports
+  hosts: cisco_switches
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+
+    - name: Créer chaque VLAN
+      cisco.ios.ios_config:
+        lines:
+          - "vlan {{ item.id }}"
+          - "name {{ item.name }}"
+      loop: "{{ vlans }}"
+
+    - name: Configurer les ports d'accès
+      cisco.ios.ios_l2_interfaces:
+        config:
+          - name: "{{ item.1 }}"
+            mode: access
+            access:
+              vlan: "{{ item.0.id }}"
+      loop: "{{ vlans | subelements('access_ports') }}"
