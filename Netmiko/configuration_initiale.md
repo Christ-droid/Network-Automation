@@ -61,9 +61,7 @@ copy run start
 ```
 
 
-
-
-### Switch (1 / 2) :
+## Switch (1 / 2) :
 
 ```bash
 conf t
