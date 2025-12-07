@@ -1,9 +1,9 @@
-CONFIGURATION INITIALE
+# CONFIGURATION INITIALE
 
 
-**Routeur :**
+## Routeur :
 
-
+```bash
 conf t
 
 hostname R1
@@ -13,17 +13,26 @@ no ip domain lookup
 ip domain name rtp.cisco.com
 
 username admin privilege 15 secret admin1234
+
 crypto key generate rsa modulus 1024
+
 inter line vty 0 15
+
 login local
+
 transport input ssh
+
 exit
 
 
 inter fa1/0
+
 ip add 172.16.1.1 255.255.255.0
+
 description LAN to Linux
+
 no shutdown
+
 exit
 
 
@@ -46,13 +55,14 @@ no shutdown
 end
  
 copy run start
+```
 
 
 
 
-**Switch (1 / 2) :**
+## Switch (1 / 2) :
 
-
+```bash
 conf t
 hostname S1 / S2
 no ip routing
@@ -85,3 +95,4 @@ no shutdown
 end
  
 copy run start
+```
