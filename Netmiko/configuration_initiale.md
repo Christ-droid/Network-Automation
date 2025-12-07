@@ -1,7 +1,7 @@
 CONFIGURATION INITIALE
 
 
-Routeur :
+**Routeur :**
 
 
 conf t
@@ -13,7 +13,6 @@ no ip domain lookup
 ip domain name rtp.cisco.com
 
 username admin privilege 15 secret admin1234
-
 crypto key generate rsa modulus 1024
 inter line vty 0 15
 login local
@@ -51,7 +50,7 @@ copy run start
 
 
 
-Switch (1 / 2) : 
+**Switch (1 / 2) :**
 
 
 conf t
