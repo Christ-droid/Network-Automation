@@ -43,6 +43,7 @@ description LAN Gestion S1
 exit
 inter fa0/0
 no shutdown
+exit
 
 
 inter fa0/1.100
@@ -50,6 +51,7 @@ encapsulation dot1Q 100
 ip add 172.16.100.1 255.255.255.0
 description LAN Gestion S2
 exit
+
 inter fa0/1
 no shutdown
 end
