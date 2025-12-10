@@ -78,6 +78,8 @@ copy run start                   ! Sauvegarde la configuration
 ## 3.Configuration des Switchs (S1 et S2)
 
 Les switchs doivents être accessible via une adresse IP de gestion (SVI)
-- **IMPORTANT :** La commande ```bash no ip routing ``
+- **IMPORTANT :** La commande ```bash 
+no ip routing 
+``
 
 
