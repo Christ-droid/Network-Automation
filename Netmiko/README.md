@@ -8,7 +8,7 @@ L'objectif est d'établir la connectivité de base et l'accès SSH nécessaire �
 
 | Équipement | Interface | Rôle | Réseau / VLAN |
 | :--- | :--- | :--- | :--- |
-| **Linux (Contrôleur)** | Eth0 | Hôte d'automatisation | `172.16.1.0/24` |
+| **Linux (Contrôleur)** | tap0 | Hôte d'automatisation | `172.16.1.0/24` |
 | **R1** (Vers Linux) | Fa1/0 | Passerelle du Linux | `172.16.1.1` |
 | **R1** (Vers S1) | Fa0/0.99 | Passerelle de Gestion S1 | `172.16.99.1` (VLAN 99) |
 | **R1** (Vers S2) | Fa0/1.100 | Passerelle de Gestion S2 | `172.16.100.1` (VLAN 100) |
