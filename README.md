@@ -10,7 +10,7 @@ Deux méthodes d'automatisation sont explorées dans ce dépôt :
 
 Le réseau est constitué d'un routeur central (Router-on-a-Stick) et de deux commutateurs de distribution.
 
-![Topologie GNS3 Complète](images/topologie_globale.png)
+![Topologie GNS3 Complète](./topologie_globale.png)
 | Équipement | Rôle | Interface Gestion | IP Gestion | VLAN Gestion |
 | :--- | :--- | :--- | :--- | :--- |
 | **Linux** | Contrôleur | `tap0` | `172.16.1.10` | N/A |
