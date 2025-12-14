@@ -1,23 +1,47 @@
 ---
-- name: Configuration VLANs + Access ports
+- name: Configure VLANs et ports sur les switches
   hosts: cisco_switches
-  gather_facts: false
+  gather_facts: no
   connection: network_cli
 
   tasks:
-
-    - name: Créer chaque VLAN
+    - name: Forcer la configuration physique du Trunk
       cisco.ios.ios_config:
         lines:
-          - "vlan {{ item.id }}"
-          - "name {{ item.name }}"
-      loop: "{{ vlans }}"
+          - duplex full
+          - speed 1000
+        parents: "interface {{ switches_config[inventory_hostname].trunk_port }}"
+      vars:
+        ansible_command_timeout: 90
 
-    - name: Configurer les ports d'accès
+    # Création des VLANs (
+    - name: Créer les VLANs
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: "{{ item.id }}"
+            name: "{{ item.name }}"
+            state: active
+      loop: "{{ vlans_switches }}"
+    
+    # Configuration des ports utilisateurs
+    - name: Configurer les ports ACCESS
       cisco.ios.ios_l2_interfaces:
         config:
-          - name: "{{ item.1 }}"
+          - name: "{{ item.name }}"
             mode: access
             access:
-              vlan: "{{ item.0.id }}"
-      loop: "{{ vlans | subelements('access_ports') }}"
+              vlan: "{{ item.vlan }}"
+      loop: "{{ switches_config[inventory_hostname].access_ports }}"
+
+    # Configuration du Trunk 
+    - name: 3.1 - Configurer le mode TRUNK
+      cisco.ios.ios_config:
+        parents: "interface {{ switches_config[inventory_hostname].trunk_port }}"
+        lines:
+          - switchport trunk encapsulation dot1q
+          - switchport mode trunk
+          - switchport trunk native vlan 1
+          - switchport trunk allowed vlan 1,10,20,30,40,99,100
+          - no shutdown
+      vars:
+        ansible_command_timeout: 90
