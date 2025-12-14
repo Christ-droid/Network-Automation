@@ -1,4 +1,4 @@
-### 2. Guide Netmiko : 
+### Guide Netmiko : 
 
 # Automatisation avec Python & Netmiko
 
