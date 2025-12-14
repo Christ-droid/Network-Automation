@@ -1,4 +1,4 @@
-### 3. Guide Ansible : 
+### Guide Ansible : 
 
 
 # Automatisation avec Ansible
