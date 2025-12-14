@@ -40,7 +40,7 @@ line vty 0 4
  login local
 exit
 
-! Interface vers Linux
+! Interface vers mon pc 
 interface FastEthernet1/0
  ip address 172.16.1.1 255.255.255.0
  no shutdown
@@ -65,7 +65,7 @@ interface FastEthernet0/1.100
  ip address 172.16.100.1 255.255.255.0
  no shutdown
 end
-write memory
+write memory'''
 
 
 ### B. Configuration des Switchs (S1 et S2)
@@ -73,8 +73,7 @@ write memory
 Les switchs doivent avoir une IP, une passerelle par défaut et un Trunk actif vers le routeur.
 
 Pour S1 :
-Bash
-
+Bash'''
 ! Console S1
 enable
 conf t
@@ -104,13 +103,13 @@ interface Vlan99
 exit
 ip default-gateway 172.16.99.1
 end
-write memory
+write memory'''
 
 Pour S2 (Adapter avec VLAN 100) :
 
     Utiliser interface Vlan100, IP 172.16.100.2 et Gateway 172.16.100.1.
 
-C. Configuration Linux
+###C. Configuration Linux
 
 Ajoutez les routes pour que le Linux sache passer par R1 pour atteindre les switchs :
 Bash
