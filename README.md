@@ -65,7 +65,8 @@ interface FastEthernet0/1.100
  ip address 172.16.100.1 255.255.255.0
  no shutdown
 end
-write memory'''
+write memory
+```
 
 
 ### B. Configuration des Switchs (S1 et S2)
@@ -73,7 +74,8 @@ write memory'''
 Les switchs doivent avoir une IP, une passerelle par défaut et un Trunk actif vers le routeur.
 
 Pour S1 :
-Bash'''
+Bash
+```
 ! Console S1
 enable
 conf t
@@ -103,7 +105,8 @@ interface Vlan99
 exit
 ip default-gateway 172.16.99.1
 end
-write memory'''
+write memory
+```
 
 Pour S2 (Adapter avec VLAN 100) :
 
