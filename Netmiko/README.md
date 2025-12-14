@@ -1,9 +1,5 @@
----
+### 2. Guide Netmiko : 
 
-### 2. Guide Netmiko : `NETMIKO_GUIDE.md`
-*Ce fichier explique comment utiliser les scripts Python que vous avez uploadés (`main.py`, etc.).*
-
-```markdown
 # Automatisation avec Python & Netmiko
 
 Ce dossier contient les scripts Python permettant de configurer les équipements Cisco via SSH en utilisant la librairie `Netmiko`.
@@ -18,19 +14,27 @@ Ce dossier contient les scripts Python permettant de configurer les équipements
 
 Il est recommandé d'utiliser un environnement virtuel pour isoler les dépendances.
 
-```bash
+
 # 1. Création de l'environnement virtuel
+```bash
 python3 -m venv venv
+```
 
 # 2. Activation
+
+```bash
 source venv/bin/activate
+```
 
 # 3. Installation des requis
+```bash
 pip install netmiko
+```
 
 Utilisation
 
 Une fois l'environnement activé et la connectivité SSH validée (voir README principal), lancez simplement le script principal :
-Bash
 
+```bash
 python3 main.py
+```
