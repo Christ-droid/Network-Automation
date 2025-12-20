@@ -1,4 +1,6 @@
 from netmiko import ConnectHandler
+import address_table as add
+
 
 # Paramètres de connexion (Management via Fa1/0)
 router_info = {
