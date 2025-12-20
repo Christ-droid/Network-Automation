@@ -16,36 +16,64 @@ print("In root")
 commands = [
     # VLAN 10
     'interface Fa0/0.10',
-    'encapsulation dot1Q 10',
-    'ip address 192.168.10.1 255.255.255.0',
-    'exit',
+        'encapsulation dot1Q 10',
+        'ip address 192.168.10.1 255.255.255.0',
+        'exit',
 
     # VLAN 20
     'interface Fa0/0.20',
-    'encapsulation dot1Q 20',
-    'ip address 192.168.20.1 255.255.255.0',
-    'exit',
+        'encapsulation dot1Q 20',
+        'ip address 192.168.20.1 255.255.255.0',
+        'exit',
 
 
     'interface Fa0/0',
-    'no shutdown',
-    'exit',
+        'no shutdown',
+        'exit',
 
     # VLAN 30
     'interface Fa0/1.30',
-    'encapsulation dot1Q 30',
-    'ip address 192.168.30.1 255.255.255.0',
-    'exit',
+        'encapsulation dot1Q 30',
+        'ip address 192.168.30.1 255.255.255.0',
+        'exit',
 
     # VLAN 40
     'interface Fa0/1.40',
-    'encapsulation dot1Q 40',
-    'ip address 192.168.40.1 255.255.255.0',
-    'exit',
+        'encapsulation dot1Q 40',
+        'ip address 192.168.40.1 255.255.255.0',
+        'exit',
 
     'interface Fa0/1',
-    'no shutdown',
-    'exit',
+        'no shutdown',
+        'exit',
+
+
+
+    # DHCP CONFIGURATION
+    'ip dhcp excluded 192.168.10.1 192.168.10.10',
+    'ip dhcp excluded 192.168.20.1 192.168.20.10',
+    'ip dhcp excluded 192.168.30.1 192.168.30.10',
+    'ip dhcp excluded 192.168.40.1 192.168.40.10',
+
+    'ip dhcp pool VLAN-10',
+        'network 192.168.10.0 255.255.255.0',
+        'default-router 192.168.10.1',
+        'exit',
+
+    'ip dhcp pool VLAN-20',
+        'network 192.168.20.0 255.255.255.0',
+        'default-router 192.168.20.1',
+        'exit',
+
+    'ip dhcp pool VLAN-30',
+        'network 192.168.30.0 255.255.255.0',
+        'default-router 192.168.30.1',
+        'exit',
+
+    'ip dhcp pool VLAN-40',
+        'network 192.168.40.0 255.255.255.0',
+        'default-router 192.168.40.1',
+        'exit',
 ]
 
 def run_router_config():
